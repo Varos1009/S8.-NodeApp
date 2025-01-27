@@ -8,8 +8,14 @@ const app = express();
 app.use(express.json());
 
 // Import routes
-const userRoutes = require('./routes/userRoutes');
-app.use('/api/users', userRoutes);
+const playersRoutes = require('./routes/playersRoutes');
+const eventRoutes = require('./routes/eventRoutes');
+const mapRoutes = require('./routes/mapRoutes');
+
+// Use routes
+app.use('/player', playersRoutes);
+app.use('/event', eventRoutes);
+app.use('/map', mapRoutes);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
