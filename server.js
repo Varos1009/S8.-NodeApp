@@ -1,11 +1,15 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
+const morgan = require('morgan');
 
 const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(cors());
+app.use(morgan('dev'));
 
 // Import routes
 const playersRoutes = require('./routes/playersRoutes');
@@ -13,9 +17,20 @@ const eventRoutes = require('./routes/eventRoutes');
 const mapRoutes = require('./routes/mapRoutes');
 
 // Use routes
-app.use('/player', playersRoutes);
+app.use('/players', playersRoutes);
 app.use('/event', eventRoutes);
 app.use('/map', mapRoutes);
+
+// Default 404 route
+app.use((req, res, next) => {
+  res.status(404).json({ message: "Route not found" });
+});
+
+// Error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: "An internal server error occurred" });
+});
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
