@@ -53,14 +53,17 @@ router.put("/:id", async (req, res) => {
     const { name, position, dorsal, age, nationality } = req.body;
 
     try {
-        // Check if another player already has the same dorsal number
+        // Check if another player has the same dorsal number
         const existingPlayer = await Player.findOne({ dorsal });
         if (existingPlayer && existingPlayer._id.toString() !== id) {
-            return res.status(400).json({ error: "Dorsal number already taken by another player." });
+            return res.status(400).json({ error: "Dorsal number already taken" });
         }
 
-        // Update player
-        const updatedPlayer = await Player.findByIdAndUpdate(id, { name, position, dorsal, age, nationality }, { new: true });
+        const updatedPlayer = await Player.findByIdAndUpdate(
+            id,
+            { name, position, dorsal, age, nationality },
+            { new: true }
+        );
 
         if (!updatedPlayer) {
             return res.status(404).json({ error: "Player not found" });
@@ -72,7 +75,6 @@ router.put("/:id", async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
-
 
 // DELETE player (With ID validation)
 router.delete("/:id", async (req, res) => {

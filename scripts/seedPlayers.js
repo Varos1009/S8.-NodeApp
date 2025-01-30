@@ -31,7 +31,7 @@ const players = [
   { id: '20', name: 'Ansu Fati', dorsal: 10, position: 'Forward', nationality: 'Spain', age: 22 },
   { id: '21', name: 'Raphinha', dorsal: 11, position: 'Forward', nationality: 'Brazil', age: 28 },
   { id: '22', name: 'Pau Victor', dorsal: 18, position: 'Forward', nationality: 'Spain', age: 23 },
-  { id: '23', name: 'Lamin Yamal', dorsal: 19, position: 'Forward', nationality: 'spain', age: 17 },
+  { id: '23', name: 'Lamin Yamal', dorsal: 19, position: 'Forward', nationality: 'Spain', age: 17 },
 ];
 
 // Insert players into the database

@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
 
 const playersSchema = new mongoose.Schema({
-    id: {
-        type: String,
-        required: true,
-        unique: true,
-    },
+   
     name: {
         type: String,
         required: true,
@@ -26,6 +22,11 @@ const playersSchema = new mongoose.Schema({
     age: {
         type: Number,
         required: true,
+    },
+    id: {
+        type: String,
+        required: true,
+        unique: true,
     },
 
 }, { timestamps: true });
