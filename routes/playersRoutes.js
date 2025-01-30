@@ -50,23 +50,26 @@ router.post("/", async (req, res) => {
 // PUT (Update) player (With ID validation)
 router.put("/:id", async (req, res) => {
     const { id } = req.params;
-    console.log("Received ID for update:", id);  // Log the ID to check if it’s valid
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({ error: "Invalid player ID" });
-    }
+    const { name, position, dorsal, age, nationality } = req.body;
 
     try {
-        const player = await Player.findById(id);
-        if (!player) {
-            return res.status(404).json({ message: "Player not found" });
+        // Check if another player already has the same dorsal number
+        const existingPlayer = await Player.findOne({ dorsal });
+        if (existingPlayer && existingPlayer._id.toString() !== id) {
+            return res.status(400).json({ error: "Dorsal number already taken by another player." });
         }
 
-        Object.assign(player, req.body);
-        await player.save();
-        res.json(player);
+        // Update player
+        const updatedPlayer = await Player.findByIdAndUpdate(id, { name, position, dorsal, age, nationality }, { new: true });
+
+        if (!updatedPlayer) {
+            return res.status(404).json({ error: "Player not found" });
+        }
+
+        res.json(updatedPlayer);
     } catch (error) {
-        console.error("Error updating player:", error);  // Log any other errors
-        res.status(500).json({ error: "Server error" });
+        console.error("Update error:", error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
 
