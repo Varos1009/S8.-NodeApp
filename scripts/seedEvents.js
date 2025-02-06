@@ -123,13 +123,13 @@ const events = [
 // Function to seed the events
 const seedEvents = async () => {
     try {
-        for (let i = 0; i < events.length; i++) {
-            await Event.create(events[i]);
-        }
-        console.log('Events seeded successfully.');
+        await Event.deleteMany({}); // Delete all existing events
+        await Event.insertMany(events); // Insert the new events
+        console.log("Events seeded successfully.");
     } catch (err) {
-        console.error('Error seeding events:', err);
-    } finally {
+        console.error("Error seeding events:", err);
+    }
+    finally {
         mongoose.connection.close(); // Close the connection
     }
 };

@@ -1,5 +1,5 @@
 const express = require('express');
-const Map = require('../models/players');
+const Map = require('../models/map');
 const router = express.Router();
 
 router.get('/', async (req, res) => {

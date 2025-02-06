@@ -10,6 +10,10 @@ const mapSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    capacity : {
+        type: Number,
+        required: true,
+    },
     direction: {
         type: String,
         required: true,
@@ -23,6 +27,10 @@ const mapSchema = new mongoose.Schema({
         required: true,
     },
     city: {
+        type: String,
+        required: true,
+    },
+    community: {
         type: String,
         required: true,
     },

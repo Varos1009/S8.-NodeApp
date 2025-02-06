@@ -11,11 +11,11 @@ const eventsSchema = new mongoose.Schema({
     },
     competition: {
         type: String,
-        required: true,
+        required: false,
     },
     place: {
         type: String,
-        required: true,
+        required: false,
     },
 
 });
