@@ -49,7 +49,6 @@ node server.js
 ### Player Endpoints
 
 - `GET /players`: Get all players.
-- `GET /players/:id`: Get a specific player by ID.
 - `POST /players`: Create a new player.
 - `PUT /players/:id`: Update a player by ID.
 - `DELETE /players/:id`: Delete a player by ID.
@@ -57,7 +56,6 @@ node server.js
 ### Event Endpoints
 
 - `GET /event`: Get all events.
-- `GET /event/:id`: Get a specific event by ID.
 - `POST /event`: Create a new event.
 - `PUT /event/:id`: Update an event by ID.
 - `DELETE /event/:id`: Delete an event by ID.
@@ -65,7 +63,6 @@ node server.js
 ### Map Data Endpoints
 
 - `GET /map`: Get all map data.
-- `GET /map/:id`: Get a specific map by ID.
 - `POST /map`: Create a new map.
 - `PUT /map/:id`: Update a map by ID.
 - `DELETE /map/:id`: Delete a map by ID.
