@@ -1,25 +1,25 @@
 const express = require('express');
-const Map = require('../models/map');
+const Places = require('../models/map');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const maps = await Map.find();
+    const maps = await Places.find();
     res.json(maps);
 }); 
 
 router.get('/:id', async (req, res) => {
-    const map = await Map.findById(req.params.id);
+    const map = await Places.findById(req.params.id);
     res.json(map);
 });         
 
 router.post('/', async (req, res) => {    
-    const map = new Map(req.body);
+    const map = new Places(req.body);
     await map.save();
     res.json(map);
 });     
 
 router.put('/:id', async (req, res) => {    
-    const map = await Map.findById(req.params.id);
+    const map = await Places.findById(req.params.id);
     map.id = req.body.id;
     map.direction = req.body.direction;
     map.lat = req.body.lat;

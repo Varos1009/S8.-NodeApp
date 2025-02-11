@@ -32,7 +32,7 @@ const isValidDate = (dateString) => {
 };
 
 router.post('/', async (req, res) => {
-    const { name, date, competition, place } = req.body;
+    const { name, date } = req.body;
 
     if (!name || !date) {
         return res.status(400).json({ message: "Missing required fields: name or date" });
